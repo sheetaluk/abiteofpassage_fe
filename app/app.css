@@ -1,0 +1,37 @@
+.entry-container {
+  background-color: black;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
+
+.hero {
+  background-image: url("./assets/img/hero.jpg");
+  background-repeat: no-repeat;
+  background-color: black;
+  background-position-x: 50%;
+  background-size:100%;
+  padding-top: 30%;
+  padding-left: 80%;
+  height: 100%;
+}
+
+.signup-box {
+  height: 200px;
+  width: 200px;
+  background-color: #2a2;
+  color: black;
+  opacity: .8;
+  padding: 32px 20px 20px 32px;
+  text-decoration: none;
+  cursor: pointer;
+  letter-spacing: 2px;
+  font-size: 24px;
+  border-radius: 4px;
+}
+
+.signup-fb {
+  margin-top: 22px;
+}.navbar-inner a{text-decoration:none}.navbar-header{float:left;padding-top:15px;font-size:16px;letter-spacing:1px}.navbar-logo{margin-top:20px;margin-bottom:20px;height:40px;color:#fff;text-transform:uppercase;width:200px}
