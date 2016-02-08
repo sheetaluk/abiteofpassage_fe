@@ -5,10 +5,38 @@
   angular.module('loci', [
     'ngRoute',
     'loci.entry',
+    'loci.home',
+    'loci.authFact',
     'loci.version'
-  ]).
-  config(['$routeProvider', function($routeProvider) {
-    $routeProvider.otherwise({redirectTo: '/entry'});
+  ])
+  .config(['$routeProvider', function($routeProvider) {
+    $routeProvider
+    .when('/', {
+      templateUrl: 'entry/entry.html',
+      controller: 'EntryCtrl'
+    })
+    .when('/home', {
+      templateUrl: 'home/home.html',
+      controller: 'HomeCtrl',
+      authenticated: true
+    })
+    .otherwise('/', {
+      templateUrl: 'entry/entry.html',
+      controller: 'EntryCtrl'
+    });
+  }])
+
+  .run(['$rootScope', '$location', 'authFact',
+    function($rootScope, $location, authFact) {
+      $rootScope.$on('$routeChangeStart', function(event, next, current) {
+        if (next.$$route.authenticated) {
+          var userAuth = authFact.getAccessToken();
+
+          if (!userAuth) {
+            $location.path('/');
+          }
+        }
+      });
   }]);
 
   window.fbAsyncInit = function() {
@@ -27,3 +55,4 @@
       fjs.parentNode.insertBefore(js, fjs);
   }(document, 'script', 'facebook-jssdk'));
 }());
+

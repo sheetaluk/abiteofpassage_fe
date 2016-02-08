@@ -1,7 +1,7 @@
 (function() {
   'use strict';
 
-  angular.module('loci.entry', ['ngRoute'])
+  angular.module('loci.entry', ['ngRoute', 'loci.authFact'])
 
   .config(['$routeProvider', function($routeProvider) {
     $routeProvider.when('/entry', {
@@ -10,7 +10,7 @@
     });
   }])
 
-  .controller('EntryCtrl', function($scope) {
+  .controller('EntryCtrl', ['$scope', '$location', 'authFact', function($scope, $location, authFact) {
 
     $scope.FBLogin = function() {
       FB.login(function(response) {
@@ -20,6 +20,10 @@
             console.log('Good to see you, ' + meResponse.name + '.');
 
             var accessToken = FB.getAuthResponse().accessToken;
+            authFact.setAccessToken(accessToken);
+
+            $location.path('/home');
+            $scope.$apply();
           });
         } else {
           console.log('User cancelled login or did not fully authorize.');
@@ -27,5 +31,5 @@
       }, {scope: 'public_profile,email'});
     };
 
-  });
+  }]);
 }());
