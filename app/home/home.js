@@ -1,9 +1,9 @@
 (function() {
   'use strict';
 
-  angular.module('loci.home', ['ngRoute'])
+  angular.module('loci.home', ['ngRoute', 'loci.authFact'])
 
-  .controller('HomeCtrl', function($scope) {
-          $scope.home = "home";    
-  });
+  .controller('HomeCtrl', ['$scope', 'authFact', function($scope, authFact) {
+    $scope.home = authFact.getUserObj();
+  }]);
 }());

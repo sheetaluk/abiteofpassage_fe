@@ -21,6 +21,7 @@
 
             var accessToken = FB.getAuthResponse().accessToken;
             authFact.setAccessToken(accessToken);
+            authFact.setUserObj(meResponse);
 
             $location.path('/home');
             $scope.$apply();
